@@ -28,8 +28,8 @@ color: white;
 function success(pos) {
   const crd = pos.coords;
   let cross = document.getElementById("crossHairs");
-  let x = 1318*(crd.longitude + 79.478782)/0.0031;
-  let y = 1318*(44.0127509 - crd.latitude)/0.0031;
+  let x = 1318*(crd.longitude + 79.478782)/0.0029;
+  let y = 1318*(44.0127509 - crd.latitude)/0.0029;
 
   cross.style.top = `${Math.round(y)}px`
   cross.style.left = `${Math.round(x)}px`
