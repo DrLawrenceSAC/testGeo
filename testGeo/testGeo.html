@@ -1,0 +1,55 @@
+<HTML>
+	<head>
+<style>
+body{}
+#background{
+position:relative;
+}
+#crossHairs{
+position:absolute;
+top: 50px;
+left: 50px;
+font-size:100pt;
+color: white;
+}
+</style>
+	</head>
+	<body>
+		<div id="background"><span id="crossHairs">+</span><img src="GeoTest.png"><div>
+		
+	</body>
+	<script>
+		const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+function success(pos) {
+  const crd = pos.coords;
+  let cross = document.getElementById("crossHairs");
+  let x = 1318*(crd.longitude + 79.478782)/0.0022833;
+  let y = 1318*(44.0127509 - crd.latitude)/0.0022833;
+
+  cross.style.top = `${Math.round(y)}px`
+  cross.style.left = `${Math.round(x)}px`
+ // cross.style.top = `200px`;
+ // cross.style.left = `200px`;
+			console.log(x);
+			console.log(y);
+  console.log("Your current position is:");
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+	</script>
+</HTML>
